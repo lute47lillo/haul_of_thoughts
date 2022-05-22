@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+<!-- Extends gets the base content from the base.html
+    block contents are derived and declared on the base.html file too
+    The code below is original to the page that uses index.html
+-->
+{% block content %}
+    <h1>{% block title %} Book Thought {% endblock %}</h1> 
+    <h1>Welcome to your Haul of Thoughts</h1>
+    <h2>In the future you'll be able to review books, get quotes and rate new books</h2>
+{% endblock %}
