@@ -6,6 +6,15 @@
 -->
 {% block content %}
     <h1>{% block title %} Book Thought {% endblock %}</h1> 
-    <h1>Welcome to your Haul of Thoughts</h1>
-    <h2>In the future you'll be able to review books, get quotes and rate new books</h2>
+    <!-- Using Jinja logic engine -->
+    {% for message in messages %}
+        <div class='message'>
+            <h3>{{ message['title'] }}</h3>
+            <p>{{ message['content'] }}</p>
+        </div>
+    {% endfor %}
+    <div>
+        <a href="{{ url_for('review') }}" target="_parent"><button type="submit">Review new book</button></a>
+    </div>
 {% endblock %}
+

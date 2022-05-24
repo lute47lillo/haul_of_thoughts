@@ -24,6 +24,11 @@ model.fit(books_df)
     .reshape(-1,1) -> Flattens out the matrix
 """
 
+
+def get_predictions(pred):
+    return pred
+    
+
 # This now is giving a concrete example (237, but what if user just wants some recommendation based on similarity)
 
 """ 
@@ -35,8 +40,8 @@ model.fit(books_df)
         - Might be interesting to prompt what is the average rating that the book recommended has.
         - Pull image based on recommendations
 """
-
-input_book = input("Based on what book you'd like your recommendation?:")
+# Commented out for DEVELOPMENT PURPOSES OF FRONT_END
+#input_book = input("Based on what book you'd like your recommendation?:")
 #input_book = "Harry Potter and the Chamber of Secrets (Book 2)" -> IS the example for test
 
 """
@@ -53,9 +58,12 @@ author_input = full_df.loc[full_df['title'] == input_book, 'author'].values[0]
 for i in range(len(sug)):
     
     author = full_df.loc[full_df['title'] == books_df.index[sug[i]], 'author'].values[0]
+    
     print(books_df.index[sug[i]], "of author", author.title(), "at index row at: ", sug[i], "and distance of: ", dist[i])
   
 
+example_prediction = books_df.index[sug[0]]
+#get_predictions(example_prediction)
 
 
 

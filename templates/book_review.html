@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Add a New Message {% endblock %}</h1>
+    <!-- method="post" Will create a POST request-->
+    <form method="post">
+        <label for="title">Book name</label>
+        <br>
+        <input type="text" name="title"
+               placeholder="And the book will be named..."
+                size="61"
+               value="{{ request.form['title'] }}"></input>
+        <br>
+
+        <label for="content">Book review content</label>
+        <br>
+        <textarea name="content"
+                  placeholder="Once upon a time"
+                  rows="15"
+                  cols="60"
+                  >{{ request.form['content'] }}</textarea>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
