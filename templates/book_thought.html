@@ -5,16 +5,42 @@
     The code below is original to the page that uses index.html
 -->
 {% block content %}
-    <h1>{% block title %} Book Thought {% endblock %}</h1> 
+    <h1>{% block title %} Book Thoughts {% endblock %}</h1> 
     <!-- Using Jinja logic engine -->
-    {% for message in messages %}
-        <div class='message'>
-            <h3>{{ message['title'] }}</h3>
-            <p>{{ message['content'] }}</p>
-        </div>
+    {% for book in books %}
+    <div class='book'>
+        <h3>#{{ book[0] }} - {{ book[1] }} BY {{ book[2] }}</h3>
+        <i><p>(INSPIRING QUOTES:
+            {{ book[3] }} )</p></i>
+        <p class='review'>{{ book[4] }}</p>
+        <i><p>Read? {{ book[5] }}</p></i>
+    </div>
     {% endfor %}
+    
+
     <div>
         <a href="{{ url_for('review') }}" target="_parent"><button type="submit">Review new book</button></a>
     </div>
 {% endblock %}
 
+
+
+
+<!--
+    LEGACY
+    <hr>
+    {% for reviews in book_reviews %}
+        <h2> {{ reviews['title'] }} by {{ reviews['author'] }}</h2>
+        <h4> {{ reviews['body_review'] }} </h4>
+        <p> Rating: {{ reviews['rating'] }} </p>
+        <p> Inspiring quotes:
+            {{ reviews['quotes'] }} <p>
+        <p>Read?:
+            {% if reviews['finished'] %}
+                Already read
+            {% else %}
+                Not yet read
+            {% endif %}</p>
+        <hr>
+    {% endfor %}
+-->

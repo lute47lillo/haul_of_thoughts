@@ -3,23 +3,93 @@
 {% block content %}
     <h1>{% block title %} Add a New Message {% endblock %}</h1>
     <!-- method="post" Will create a POST request-->
-    <form method="post">
-        <label for="title">Book name</label>
-        <br>
-        <input type="text" name="title"
-               placeholder="And the book will be named..."
-                size="61"
-               value="{{ request.form['title'] }}"></input>
-        <br>
+    <!--
+        1.We render the CSRF token WTForms uses to protect your form from CSRF attacks using the line {{ form.csrf_token }}
+        2. render each field using the syntax form.field()
+        3. render its label using the syntax form.field.label
+    -->
+    <form method="POST" action="/review/">
+        {{ book_review.csrf_token }}
+        <p>
+            {{ book_reviewtitle.label }}
+            {{ book_review.title(size=20) }}
+        </p>
 
-        <label for="content">Book review content</label>
-        <br>
-        <textarea name="content"
-                  placeholder="Once upon a time"
-                  rows="15"
-                  cols="60"
-                  >{{ request.form['content'] }}</textarea>
-        <br>
-        <button type="submit">Submit</button>
+        {% if book_review.title.errors %}
+            <ul class="errors">
+                {% for error in book_review.title.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p>
+            {{ book_review.author.label }}
+            {{ book_review.author(size=20) }}
+        </p>
+
+        {% if book_review.author.errors %}
+            <ul class="errors">
+                {% for error in book_review.author.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p>
+            {{ book_review.review_body.label }}
+        </p>
+        {{ book_review.review_body(rows=10, cols=50) }}
+
+        {% if book_review.review_body.errors %}
+            <ul class="errors">
+                {% for error in book_review.review_body.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p>
+            {{ book_review.rating.label }}
+            {{ book_review.rating() }}
+        </p>
+
+        {% if book_review.rating.errors %}
+            <ul class="errors">
+                {% for error in book_review.rating.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p>
+            {{ book_review.quotes.label }}
+            {{ book_review.quotes(size=20) }}
+        </p>
+
+        {% if book_review.quotes.errors %}
+            <ul class="errors">
+                {% for error in book_review.quotes.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p>
+            {{ book_review.finished() }} {{ book_review.finished.label }}
+        </p>
+
+        {% if book_review.finished.errors %}
+            <ul class="errors">
+                {% for error in book_review.finished.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+
+        <p>
+            <input type="submit" value="Add">
+        </p>
     </form>
 {% endblock %}
