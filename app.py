@@ -36,13 +36,25 @@ def home():
     return render_template('index.html')
 
 '''
-    Call DB connection and fetch all data into the web browser
+    1. Call DB connection and fetch all data into the web browser
+    2. If remove is called, delete the entry for which id is matched
 '''
-@app.route('/book_thought/')
+@app.route('/book_thought/',methods=('GET', 'POST'))
 def book_thought():
+    
     # Set-UP connections
     conect = connect_db()
     cursor = conect.cursor()
+    
+    if 'remove' in request.form:
+        book_id = int(request.form['index'])
+        print(book_id)
+      
+        cursor.execute("DELETE FROM books WHERE id='%s'"  % book_id)
+        conect.commit()
+        cursor.close()
+        conect.close()
+        return redirect(url_for('book_thought'))
     
     # Execute commands to retrieve
     cursor.execute('SELECT * FROM books;')
@@ -90,6 +102,8 @@ def review():
     data.
     2. Save changes button is pressed and changes are saved
     to the DB
+    #TODO: When editing, the order of the databse changes showing the updated element last
+    MAYBE UPDATE THE DATE ADDED TO BE UPDATEED
 
 """
 last_access_id = []
@@ -103,7 +117,6 @@ def edit():
             # do things
             book_id = int(request.form['index'])
             last_access_id.append(book_id)
-            print(book_id)
         
             # Set-UP connections
             conect = connect_db()
@@ -112,7 +125,7 @@ def edit():
             # Execute commands to retrieve
             cursor.execute("SELECT * FROM books WHERE id='%s'"  % book_id)
             books = cursor.fetchall()
-            print(books)
+
             # Disconect
             cursor.close()
             conect.close()
@@ -148,7 +161,6 @@ def edit():
             return redirect(url_for('book_thought'))
         
     return render_template('book_thought.html')
-        
         
 
 

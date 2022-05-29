@@ -19,6 +19,10 @@
             <input type="hidden" id="index" name="index" value="{{ book[0] }}">
             <a href="{{ url_for('edit') }}" target="_parent"><button type="submit" name="index" value="edit">Edit</button></a>
         </form>
+        <form method="post" role="form">
+            <input type="hidden" id="index" name="index" value="{{ book[0] }}">
+            <button type="submit" name="remove" value="remove">Remove</button>
+        </form>
 
     </div>
     {% endfor %}
