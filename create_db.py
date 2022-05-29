@@ -6,6 +6,9 @@
 import os # Access env variables
 import psycopg2
 
+os.environ['DB_USERNAME'] = 'admin'
+os.environ['DB_PASSWORD'] = 'PurplePine015'
+
 # Create a connection to the DB
 conn = psycopg2.connect(
         host="localhost",
@@ -31,18 +34,16 @@ cur.execute('CREATE TABLE books (id serial PRIMARY KEY,'
                                  'author varchar (50) NOT NULL,'
                                  'quotes text,'
                                  'review text,'
-                                 'read boolean NOT NULL,'
                                  'date_added date DEFAULT CURRENT_TIMESTAMP);'
                                  )
 
 
 # Insert EXAMPLE-DATA into the table
-cur.execute('INSERT INTO books (title, author, quotes, read, review)'
-            'VALUES (%s, %s, %s, %s, %s)',
+cur.execute('INSERT INTO books (title, author, quotes, review)'
+            'VALUES (%s, %s, %s, %s)',
             ('La tabla de Flandes',
              'Arturo Pérez-Reverte',
              'Dios mueve al jugador y este a la pieza. ¿Qué Dios detrás de Dios la trama empieza de polvo y sueño y agonías...?',
-             'FALSE',
              'A great classic!')
             )
 

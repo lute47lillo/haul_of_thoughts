@@ -9,38 +9,22 @@
     <!-- Using Jinja logic engine -->
     {% for book in books %}
     <div class='book'>
-        <h3>#{{ book[0] }} - {{ book[1] }} BY {{ book[2] }}</h3>
-        <i><p>(INSPIRING QUOTES:
-            {{ book[3] }} )</p></i>
+        <h3>#{{ book[0] }} - {{ book[1] }} by {{ book[2] }}</h3>
+        <i><p>INSPIRING QUOTES:<br>
+            {{ book[3] }} </p></i>
         <p class='review'>{{ book[4] }}</p>
-        <i><p>Read? {{ book[5] }}</p></i>
+
+        <!-- Form to send data to Falsk backend. Send book-id for loading and edit -->
+        <form action="/edit" method="post" role="form">
+            <input type="hidden" id="index" name="index" value="{{ book[0] }}">
+            <a href="{{ url_for('edit') }}" target="_parent"><button type="submit" name="index" value="edit">Edit</button></a>
+        </form>
+
     </div>
     {% endfor %}
     
-
     <div>
         <a href="{{ url_for('review') }}" target="_parent"><button type="submit">Review new book</button></a>
     </div>
 {% endblock %}
 
-
-
-
-<!--
-    LEGACY
-    <hr>
-    {% for reviews in book_reviews %}
-        <h2> {{ reviews['title'] }} by {{ reviews['author'] }}</h2>
-        <h4> {{ reviews['body_review'] }} </h4>
-        <p> Rating: {{ reviews['rating'] }} </p>
-        <p> Inspiring quotes:
-            {{ reviews['quotes'] }} <p>
-        <p>Read?:
-            {% if reviews['finished'] %}
-                Already read
-            {% else %}
-                Not yet read
-            {% endif %}</p>
-        <hr>
-    {% endfor %}
--->

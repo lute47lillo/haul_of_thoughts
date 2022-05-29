@@ -1,95 +1,36 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Add a New Message {% endblock %}</h1>
-    <!-- method="post" Will create a POST request-->
-    <!--
-        1.We render the CSRF token WTForms uses to protect your form from CSRF attacks using the line {{ form.csrf_token }}
-        2. render each field using the syntax form.field()
-        3. render its label using the syntax form.field.label
-    -->
-    <form method="POST" action="/review/">
-        {{ book_review.csrf_token }}
+    <h1>{% block title %} Add a New Book {% endblock %}</h1>
+    <form method="post">
         <p>
-            {{ book_reviewtitle.label }}
-            {{ book_review.title(size=20) }}
+            <label for="title">Title</label>
+            <input type="text" name="title"
+                   placeholder="Book title">
+            </input>
         </p>
 
-        {% if book_review.title.errors %}
-            <ul class="errors">
-                {% for error in book_review.title.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-
         <p>
-            {{ book_review.author.label }}
-            {{ book_review.author(size=20) }}
+            <label for="author">Author</label>
+            <input type="text" name="author"
+                   placeholder="Book author">
+            </input>
         </p>
 
-        {% if book_review.author.errors %}
-            <ul class="errors">
-                {% for error in book_review.author.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+        <p>
+            <label for="quotes">Interesting Quotes</label>
+            <br>
+            <textarea name="quotes" placeholder="Quotes" rows="10" cols="60"></textarea>
+            </p>
 
         <p>
-            {{ book_review.review_body.label }}
+            
+        <label for="review">Review</label>
+        <br>
+        <textarea name="review" placeholder="Review" rows="20" cols="60"></textarea>
         </p>
-        {{ book_review.review_body(rows=10, cols=50) }}
-
-        {% if book_review.review_body.errors %}
-            <ul class="errors">
-                {% for error in book_review.review_body.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-
         <p>
-            {{ book_review.rating.label }}
-            {{ book_review.rating() }}
-        </p>
-
-        {% if book_review.rating.errors %}
-            <ul class="errors">
-                {% for error in book_review.rating.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-
-        <p>
-            {{ book_review.quotes.label }}
-            {{ book_review.quotes(size=20) }}
-        </p>
-
-        {% if book_review.quotes.errors %}
-            <ul class="errors">
-                {% for error in book_review.quotes.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-
-        <p>
-            {{ book_review.finished() }} {{ book_review.finished.label }}
-        </p>
-
-        {% if book_review.finished.errors %}
-            <ul class="errors">
-                {% for error in book_review.finished.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-
-
-        <p>
-            <input type="submit" value="Add">
+            <button type="submit">Submit</button>
         </p>
     </form>
 {% endblock %}
