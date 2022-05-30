@@ -1,0 +1,66 @@
+PostgreSQL DB documentation
+
+During the Postgres installation, an operating system user named postgres 
+was created to correspond to the postgres PostgreSQL administrative user. 
+You need to use this user to perform administrative tasks. You can use 
+sudo and pass in the username with the -iu option.
+
+1. Or you can start the PostgreSQL server and have it start up at login automatically
+    brew services start postgresql
+2. To make it stop starting up automatically at login
+    brew services stop postgresql
+
+3. Restart
+    brew services restart postgresql
+
+4. Console
+    psql postgres
+    \l -> list tables
+    \c book_db -> connect to db
+
+5. To exit \q
+
+
+admin-PurplePine015
+
+
+FUTURE FEATURES to be ADDED
+
+    1. LogIn/LogOut 
+        - Normal auth
+        - Biometric auth
+        - Will it require a new DB? Or should I connect the user DB to the auth?
+
+    2. Book Recomendation implementation
+        - Fully featured
+        - String matching for similar look ups (Due to rigid dataset)
+        - Filter by own recomendations
+
+    3. Feed route (HOME)
+        - Show your latest thoughts
+        - Show your list of book thougts
+        - Share with friends
+
+    4. User data
+        - Create lists of thoughts based on author, theme or other variable
+        - Create lists of finished books and TO READ list
+            - Imported from Book recomendation
+            - Just added (How to deal with incomplete data? -> Maybe importing from dataset?)
+
+    5. Book thought (User view)
+        - Get cover picture to easily identify book
+        - Create Personal thought view where data is displayed and showed completely, and can be edited on site (without form look)
+        - Compact the data shown on whole list of thoughts, display full when functionality above clicked.
+
+    REALLY FAR IN THE FUTURE FEATURES
+
+    6. Connect DB to cloud to retrieve anywhere
+
+    7. Host application somewhere so it doesn't run locally.
+
+    8. Create web-browser phone look for the app. 
+    
+    9. Create iPhone application based on the web app. (More like a social place)
+        - This could also create reading groups, where there is an asynchronous timeline to read and share thoughts, theories
+          and ideas.
+
