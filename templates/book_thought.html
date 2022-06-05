@@ -9,15 +9,15 @@
     <!-- Using Jinja logic engine -->
     {% for book in books %}
     <div class='book'>
-        <h3>#{{ book[0] }} - {{ book[1] }} by {{ book[2] }}</h3>
+        <h3>#{{ book[0] }} - {{ book[2] }} by {{ book[3] }}</h3>
         <i><p>INSPIRING QUOTES:<br>
-            {{ book[3] }} </p></i>
-        <p class='review'>{{ book[4] }}</p>
+            {{ book[4] }} </p></i>
+        <p class='review'>{{ book[5] }}</p>
 
         <!-- Form to send data to Falsk backend. Send book-id for loading and edit -->
         <form action="/edit" method="post" role="form">
             <input type="hidden" id="index" name="index" value="{{ book[0] }}">
-            <a href="{{ url_for('edit') }}" target="_parent"><button type="submit" name="index" value="edit">Edit</button></a>
+            <a href="{{ url_for('views.edit') }}" target="_parent"><button type="submit" name="index" value="edit">Edit</button></a>
         </form>
         <form method="post" role="form">
             <input type="hidden" id="index" name="index" value="{{ book[0] }}">
@@ -28,7 +28,7 @@
     {% endfor %}
     
     <div>
-        <a href="{{ url_for('review') }}" target="_parent"><button type="submit">Review new book</button></a>
+        <a href="{{ url_for('views.review') }}" target="_parent"><button type="submit">Review new book</button></a>
     </div>
 {% endblock %}
 
